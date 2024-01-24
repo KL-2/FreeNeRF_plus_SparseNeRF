@@ -50,7 +50,7 @@ class Config:
   ## ------ FreeNeRF add-ons --------- ##
   #### wandb settings ###
   expname: str = 'debug'
-  use_wandb: bool = False # Whether to use wandb.
+  use_wandb: bool = True  # Whether to use wandb.
   entity: str = 'FreeNeRF'
   project: str = 'dtu_debug'
   log_img_to_wandb: bool = False  # Whether to log images to wandb.
@@ -67,8 +67,8 @@ class Config:
   dataset_loader: str = 'dtu'  # The type of dataset loader to use.
   batching: str = 'single_image'  # Batch composition.
   batching_random: str = 'all_images'  # Batch composiiton for random views.
-  batch_size: int = 4096  # The number of rays/pixels in each batch.
-  batch_size_random: int = 4096  # The number of rays/pixels in each batch.
+  batch_size: int = 1024  # The number of rays/pixels in each batch.4096
+  batch_size_random: int = 1024  # The number of rays/pixels in each batch.4096
   factor: int = 0  # The downsample factor of images, 0 for no downsampling.
   render_factor: int = 0  # The factor for rendering.
   remap_to_hemisphere: bool = False  # Set to True for spherical 360 scenes.
@@ -109,7 +109,7 @@ class Config:
   vis_dist_curve_fn: Callable[Ellipsis, Any] = lambda x: x  # Curve for t_vals.
   vis_num_rays: int = 64  # The number of rays to visualize.
   dtu_scan: str = 'scan114'  # ID of considered scanID.
-  llff_scan: str = 'fern'  # Which LLFF scan to use.
+  llff_scan: str = 'flower'  # Which LLFF scan to use.
   blender_scene: str = 'lego'  # Which blender scene to use.
   dtu_mask_path: str = None  # DTU mask data directory.
 

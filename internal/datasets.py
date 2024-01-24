@@ -1029,7 +1029,12 @@ class LLFF(Dataset):
     poses = poses[indices]
 
     if self.split == 'train' and config.n_input_views < images.shape[0]:
-      idx_sub = np.linspace(0, images.shape[0] - 1, config.n_input_views)
+      #idx_sub = np.linspace(0, images.shape[0] - 1, config.n_input_views)
+      idx_sub = np.linspace(0, images.shape[0] - 1,  images.shape[0])[::config.n_input_views]
+      print(f"-------------------------------------------------------------")
+      print(f"idx_sub:{idx_sub},sparsity:{config.n_input_views}，total_images_number：{images.shape[0] - 1}")
+      print(f"-------------------------------------------------------------")
+      #创建一个包含等间隔数值的一维NumPy数组，起始值为0，结束值为图像数据的最大索引（减1），数组中包含了config.n_input_views个元素。这个数组通常用于选择图像数据的子集，用于某些视角或视图的处理或分析
       idx_sub = [round(i) for i in idx_sub]
       images = images[idx_sub]
       poses = poses[idx_sub]

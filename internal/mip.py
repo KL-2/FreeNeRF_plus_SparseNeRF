@@ -240,14 +240,6 @@ def volumetric_rendering(rgbs, weights, normals, t_vals, white_background,
 
   rendering = {'rgb': rgb}
 
-  # add this line
-  expectation = lambda x: (weights * x).sum(axis=-1) / acc
-  # expectation_save = lambda x: (weights * x).sum(-1) / jnp.clip(acc, eps)  
-  rendering['distance_mean'] = (
-      jnp.clip(
-          jnp.nan_to_num(expectation(t_mids), jnp.inf), t_vals[:, 0],
-          t_vals[:, -1]))
-  
   if compute_extras:
     eps = jnp.finfo(jnp.float32).eps
 
